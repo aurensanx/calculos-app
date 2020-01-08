@@ -19,9 +19,9 @@ const multiplication: Operation = {operation: (a, b) => a * b, text: '&times;'};
 
 const operations: Operation[] = [sum, difference, multiplication];
 
-const newRandomNumber: (max: number) => number = (max) => Math.floor(Math.random() * max);
+const newRandomNumber: (max: number) => number = (max) => Math.floor(Math.random() * max) + 1;
 
-const newOperation: () => Operation = () => operations[newRandomNumber(operations.length)];
+const newOperation: () => Operation = () => operations[newRandomNumber(operations.length) - 1];
 
 
 export const getNewFormula: () => Formula = () => {
