@@ -1,6 +1,6 @@
 - ionic cordova build android --prod --release
 
-- keytool -genkey -v -keystore calculos-app.keystore -alias calculos -keyalg RSA -keysize 2048 -validity 10000
+- keytool -genkey -v -keystore calculos-app.keystore -alias calculos -keyalg RSA -keysize 2048 -validity 10000 (first time)
 
 - keytool -list -keystore ritmo-app-key.keystore
 
