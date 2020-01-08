@@ -1,4 +1,4 @@
-import {KeyboardAction, TAP_BACKSPACE, TAP_NUMBER, TAP_PLUS_MINUS} from './keyboard-actions';
+import {KeyboardAction, PRESS_BACKSPACE, TAP_BACKSPACE, TAP_NUMBER, TAP_PLUS_MINUS} from './keyboard-actions';
 import {Formula, getNewFormula} from '../components/operation/operation';
 import {Question} from './state';
 
@@ -10,6 +10,8 @@ const _keyboardReducer =
                 return onTapNumber(state, action);
             case TAP_BACKSPACE:
                 return {formula: state.formula, answer: deleteNumber(state.answer)};
+            case PRESS_BACKSPACE:
+                return {formula: state.formula, answer: undefined};
             case TAP_PLUS_MINUS:
                 return onTapPlusMinus(state);
             default:

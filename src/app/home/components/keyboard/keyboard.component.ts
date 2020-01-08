@@ -1,6 +1,11 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {TapBackspaceAction, TapNumberAction, TapPlusMinusAction} from '../../store/keyboard-actions';
+import {
+    PressBackspaceAction,
+    TapBackspaceAction,
+    TapNumberAction,
+    TapPlusMinusAction
+} from '../../store/keyboard-actions';
 
 @Component({
     selector: 'app-keyboard',
@@ -23,5 +28,9 @@ export class KeyboardComponent {
     onPlusMinus = () => {
         this.store.dispatch(new TapPlusMinusAction());
     };
+
+    onPressBackspace() {
+        this.store.dispatch(new PressBackspaceAction());
+    }
 
 }

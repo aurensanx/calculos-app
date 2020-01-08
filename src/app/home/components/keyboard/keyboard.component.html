@@ -13,6 +13,6 @@
   <div class="box" (click)="onNumberClick(0)">0</div>
 <!--  <div class="box action">.</div>-->
   <div class="box action" (click)="onPlusMinus()">&plusmn;</div>
-  <div class="box action" (click)="onDelete()"><ion-icon name="backspace"></ion-icon></div>
+  <div class="box action" (click)="onDelete()" (press)="onPressBackspace()"><ion-icon name="backspace"></ion-icon></div>
 <!--  <div class="box action" (click)="onCheckResult()">Ok</div>-->
 </div>
