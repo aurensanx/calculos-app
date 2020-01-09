@@ -12,6 +12,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
 import {reducers} from './home/store/state';
 import {IonicGestureConfig} from './gestures/ionic-gesture-config';
+import {Vibration} from '@ionic-native/vibration/ngx';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {IonicGestureConfig} from './gestures/ionic-gesture-config';
     providers: [
         StatusBar,
         SplashScreen,
+        Vibration,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig},
     ],

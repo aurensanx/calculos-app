@@ -6,6 +6,8 @@ import {
     TapNumberAction,
     TapPlusMinusAction
 } from '../../store/keyboard-actions';
+import {Vibration} from '@ionic-native/vibration/ngx';
+
 
 @Component({
     selector: 'app-keyboard',
@@ -14,10 +16,11 @@ import {
 })
 export class KeyboardComponent {
 
-    constructor(private store: Store<{ result: number }>) {
+    constructor(private store: Store<{ result: number }>, private vibration: Vibration) {
     }
 
     onNumberClick = (a: number) => {
+        // this.vibration.vibrate(40);
         this.store.dispatch(new TapNumberAction(a));
     };
 
