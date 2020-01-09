@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {Linear, TimelineMax} from 'gsap';
-import {GAME_TIME} from '../../../app.settings';
+import {ADDITIONAL_TIME, GAME_TIME} from '../../../app.settings';
 import {select, Store} from '@ngrx/store';
 import {Question} from '../../store/state';
 import {Formula} from '../operation/operation';
 import * as _ from 'lodash';
+import {Router} from '@angular/router';
+import {NewFormulaAction, TapPlusMinusAction} from '../../store/keyboard-actions';
 
 @Component({
     selector: 'app-bar',
@@ -16,7 +18,7 @@ export class BarComponent implements OnInit {
     // animationActive: boolean;
     formula: Formula;
 
-    constructor(private store: Store<{ question: Question }>) {
+    constructor(private store: Store<{ question: Question }>, private router: Router) {
     }
 
     ngOnInit() {
@@ -25,21 +27,23 @@ export class BarComponent implements OnInit {
         tlh.to('#bgChange', GAME_TIME / 2, {attr: {fill: '#FFFF00'}, ease: Linear.easeNone}, 0);
         tlh.to('#bgChange', GAME_TIME / 2, {attr: {fill: '#FF0000'}, ease: Linear.easeNone}, GAME_TIME / 2);
 
-        tlh.eventCallback('onComplete', this.onTimeCompleted);
+        tlh.eventCallback('onComplete', () => this.onTimeCompleted(this.router));
 
         this.store.pipe(select('question')).subscribe(({formula}) => {
             if (!this.formula) {
                 this.formula = formula;
+                tlh.restart();
             } else if (!_.isEqual(this.formula, formula)) {
                 this.formula = formula;
-                tlh.time(Math.max(tlh.time() - (GAME_TIME / 5), 0));
+                tlh.time(Math.max(tlh.time() - ADDITIONAL_TIME, 0));
             }
         });
-
     }
 
-    onTimeCompleted() {
-        console.log('ha acabado el tiempo!');
+
+    onTimeCompleted(router: Router) {
+        delete this.formula;
+        router.navigate(['/stats']);
     }
 
 }
