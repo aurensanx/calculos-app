@@ -1,0 +1,39 @@
+<!--<div class="setting-item">-->
+<!--    <h2><b>Max Number: </b>{{maxNumber}}</h2>-->
+<!--    <ng5-slider [(value)]="maxNumber" [options]="maxNumberOptions"></ng5-slider>-->
+<!--</div>-->
+<!--<div class="setting-item">-->
+<!--    <h2><b>Game Time: </b>{{gameTime}} s</h2>-->
+<!--    <ng5-slider [(value)]="gameTime" [options]="gameTimeOptions"></ng5-slider>-->
+<!--</div>-->
+<!--<div class="setting-item">-->
+<!--    <h2><b>Extra Time: </b>{{extraTime}} s</h2>-->
+<!--    <ng5-slider [(value)]="extraTime" [options]="extraTimeOptions"></ng5-slider>-->
+<!--</div>-->
+
+<div class="setting-item">
+    <h2><b>Max Number: </b>{{maxNumber}}</h2>
+    <ion-range [value]="maxNumber" min="10" max="100" color="secondary" (ionChange)="onMaxNumberChange($event)">
+        <ion-label slot="start">10</ion-label>
+        <ion-label slot="end">100</ion-label>
+    </ion-range>
+</div>
+
+<div class="setting-item">
+    <h2><b>Game Time: </b>{{gameTime}} s</h2>
+    <ion-range [value]="gameTime" min="10" max="60" color="secondary" (ionChange)="onGameTimeChange($event)">
+        <ion-label slot="start">10</ion-label>
+        <ion-label slot="end">60</ion-label>
+    </ion-range>
+</div>
+
+<div class="setting-item">
+    <h2><b>Extra Time: </b>{{extraTime}} s</h2>
+    <ion-range [value]="extraTime" min="0" max="10" color="secondary" (ionChange)="onExtraTimeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+    </ion-range>
+</div>
+
+
+<ion-button (click)="saveSettings()">Save</ion-button>

@@ -1,5 +1,3 @@
-import {MAX_OPERATOR} from '../../../app.settings';
-
 export interface Operation {
     operation: ((a: number, b: number) => number);
     text: string;
@@ -12,6 +10,9 @@ export interface Formula {
     result: number;
 }
 
+// FIXME
+const MAX_OPERATOR = 100;
+
 const sum: Operation = {operation: (a, b) => a + b, text: '&plus;'};
 const difference: Operation = {operation: (a, b) => a - b, text: '&minus;'};
 const multiplication: Operation = {operation: (a, b) => a * b, text: '&times;'};
@@ -19,9 +20,10 @@ const multiplication: Operation = {operation: (a, b) => a * b, text: '&times;'};
 
 const operations: Operation[] = [sum, difference, multiplication];
 
-const newRandomNumber: (max: number) => number = (max) => Math.floor(Math.random() * max) + 1;
 
-const newOperation: () => Operation = () => operations[newRandomNumber(operations.length) - 1];
+export const newRandomNumber: (max: number) => number = (max) => Math.floor(Math.random() * max) + 1;
+
+export const newOperation: () => Operation = () => operations[newRandomNumber(operations.length) - 1];
 
 
 export const getNewFormula: () => Formula = () => {

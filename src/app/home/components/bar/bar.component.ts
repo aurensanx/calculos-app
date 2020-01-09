@@ -1,12 +1,14 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Linear, TimelineMax} from 'gsap';
-import {ADDITIONAL_TIME, GAME_TIME} from '../../../app.settings';
 import {select, Store} from '@ngrx/store';
 import {Question} from '../../store/state';
 import {Formula} from '../operation/operation';
 import * as _ from 'lodash';
 import {Router} from '@angular/router';
-import {NewFormulaAction, TapPlusMinusAction} from '../../store/keyboard-actions';
+
+// FIXME
+const GAME_TIME = 30;
+const ADDITIONAL_TIME = 6;
 
 @Component({
     selector: 'app-bar',
