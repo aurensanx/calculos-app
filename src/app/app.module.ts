@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
-import {reducers} from './home/store/state';
+import {reducers} from './store/state';
 import {IonicGestureConfig} from './gestures/ionic-gesture-config';
 import {Vibration} from '@ionic-native/vibration/ngx';
 

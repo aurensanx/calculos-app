@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NewFormulaAction} from '../home/store/keyboard-actions';
+import {NewFormulaAction} from '../../store/keyboard-actions';
 import {Store} from '@ngrx/store';
-import {Question} from '../home/store/state';
+import {Question} from '../../store/state';
 import {Router} from '@angular/router';
 
 @Component({

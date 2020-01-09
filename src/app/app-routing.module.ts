@@ -3,11 +3,11 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
     {path: '', redirectTo: 'stats', pathMatch: 'full'},
-    {path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)},
-    {path: 'stats', loadChildren: () => import('./stats/stats.module').then(m => m.StatsPageModule)},
+    {path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)},
+    {path: 'stats', loadChildren: () => import('./pages/stats/stats.module').then(m => m.StatsPageModule)},
   {
     path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
   },
 ];
 

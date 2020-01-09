@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {Question} from '../../store/state';
+import {Question} from '../../../../store/state';
 
 @Component({
     selector: 'app-result',

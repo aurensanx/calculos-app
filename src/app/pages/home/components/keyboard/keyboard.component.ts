@@ -5,7 +5,7 @@ import {
     TapBackspaceAction,
     TapNumberAction,
     TapPlusMinusAction
-} from '../../store/keyboard-actions';
+} from '../../../../store/keyboard-actions';
 import {Vibration} from '@ionic-native/vibration/ngx';
 
 

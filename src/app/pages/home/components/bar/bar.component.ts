@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Linear, TimelineMax} from 'gsap';
 import {select, Store} from '@ngrx/store';
-import {Question} from '../../store/state';
+import {Question} from '../../../../store/state';
 import {Formula} from '../operation/operation';
 import * as _ from 'lodash';
 import {Router} from '@angular/router';

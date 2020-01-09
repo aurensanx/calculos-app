@@ -6,7 +6,7 @@ import {
     TAP_NUMBER,
     TAP_PLUS_MINUS
 } from './keyboard-actions';
-import {Formula, getNewFormula} from '../components/operation/operation';
+import {Formula, getNewFormula} from '../pages/home/components/operation/operation';
 import {Question} from './state';
 
 
