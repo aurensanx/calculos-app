@@ -4,8 +4,7 @@ import {Vibration} from '@ionic-native/vibration/ngx';
 import {OperationService} from '../operation/operation.service';
 import {Formula} from '../operation/operation';
 import {KeyboardService} from './keyboard.service';
-import {NewFormulaAction} from '../../../../store/formula-actions';
-import {NewAnswerAction} from '../../../../store/answer-actions';
+import {NewFormulaAction, NewAnswerAction} from '@game-store';
 import {Subscription} from 'rxjs';
 
 

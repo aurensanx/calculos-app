@@ -3,8 +3,7 @@ import {Store} from '@ngrx/store';
 import {Router} from '@angular/router';
 import {OperationService} from '../home/components/operation/operation.service';
 import {Formula} from '../home/components/operation/operation';
-import {NewFormulaAction} from '../../store/formula-actions';
-import {NewAnswerAction} from '../../store/answer-actions';
+import {NewAnswerAction, NewFormulaAction} from '@game-store';
 
 @Component({
     selector: 'app-stats',
