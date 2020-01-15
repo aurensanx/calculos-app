@@ -13,6 +13,7 @@ import {StoreModule} from '@ngrx/store';
 import {reducers} from './store/state';
 import {IonicGestureConfig} from './gestures/ionic-gesture-config';
 import {Vibration} from '@ionic-native/vibration/ngx';
+import {IonicStorageModule} from '@ionic/storage';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {Vibration} from '@ionic-native/vibration/ngx';
     entryComponents: [],
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
         StoreModule.forRoot(reducers),
-        StoreDevtoolsModule.instrument()],
+        StoreDevtoolsModule.instrument(),
+        IonicStorageModule.forRoot()],
     providers: [
         StatusBar,
         SplashScreen,

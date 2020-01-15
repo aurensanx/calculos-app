@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SettingsService} from './settings.service';
+import {Storage} from '@ionic/storage';
 
 @Component({
     selector: 'app-settings',
@@ -13,13 +14,20 @@ export class SettingsPage implements OnInit {
     gameTime: number;
     extraTime: number;
 
-    constructor(private router: Router, private settingsService: SettingsService) {
+    constructor(private router: Router, private settingsService: SettingsService, private storage: Storage) {
     }
 
+
     ngOnInit() {
-        this.maxNumber = this.settingsService.MAX_OPERATOR;
-        this.gameTime = this.settingsService.GAME_TIME;
-        this.extraTime = this.settingsService.EXTRA_TIME;
+        this.storage.get('maxNumber').then((val) => {
+            this.maxNumber = val || this.settingsService.MAX_OPERATOR;
+        });
+        this.storage.get('gameTime').then((val) => {
+            this.gameTime = val || this.settingsService.GAME_TIME;
+        });
+        this.storage.get('extraTime').then((val) => {
+            this.extraTime = val || this.settingsService.EXTRA_TIME;
+        });
     }
 
     onMaxNumberChange(event) {
@@ -35,9 +43,9 @@ export class SettingsPage implements OnInit {
     }
 
     saveSettings() {
-        this.settingsService.MAX_OPERATOR = this.maxNumber;
-        this.settingsService.GAME_TIME = this.gameTime;
-        this.settingsService.EXTRA_TIME = this.extraTime;
+        this.storage.set('maxNumber', this.maxNumber);
+        this.storage.set('gameTime', this.gameTime);
+        this.storage.set('extraTime', this.extraTime);
         this.router.navigate(['/stats']);
     }
 
