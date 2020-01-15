@@ -1,16 +1,15 @@
 import {ActionReducerMap} from '@ngrx/store';
-import {keyboardReducer} from './keyboard-reducer';
+import {answerReducer} from './answer-reducer';
 import {Formula} from '../pages/home/components/operation/operation';
+import {formulaReducer} from './formula-reducer';
 
-export interface Question {
+
+interface AppState {
     answer: number;
     formula: Formula;
 }
 
-interface AppState {
-    question: Question;
-}
-
 export const reducers: ActionReducerMap<AppState> = {
-    question: keyboardReducer,
+    answer: answerReducer,
+    formula: formulaReducer,
 };

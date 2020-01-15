@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {Question} from '../../../../store/state';
 
 @Component({
     selector: 'app-result',
@@ -10,13 +9,10 @@ import {Question} from '../../../../store/state';
 })
 export class ResultComponent {
 
-    // answer$: Observable<Question>;
-    answer: number;
+    answer$: Observable<number>;
 
-    constructor(private store: Store<{ question: Question }>) {
-        store.pipe(select('question')).subscribe(({answer}) => {
-            this.answer = answer;
-        });
+    constructor(private store: Store<{ answer: number }>) {
+        this.answer$ = store.pipe(select('answer'));
     }
 
 }

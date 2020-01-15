@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Formula} from './operation';
 import {select, Store} from '@ngrx/store';
-import {Question} from '../../../../store/state';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -9,14 +9,19 @@ import {Question} from '../../../../store/state';
     templateUrl: './operation.component.html',
     styleUrls: ['./operation.component.scss'],
 })
-export class OperationComponent {
+export class OperationComponent implements OnDestroy {
 
     formula: Formula;
+    subscription: Subscription;
 
-    constructor(private store: Store<{ question: Question }>) {
-        store.pipe(select('question')).subscribe(({formula}) => {
-            this.formula = formula;
+    constructor(private store: Store<{ formula: Formula }>) {
+        this.subscription = store.pipe(select('formula')).subscribe((next: Formula) => {
+            this.formula = next;
         });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
 }
