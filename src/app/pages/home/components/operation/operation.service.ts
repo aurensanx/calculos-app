@@ -11,10 +11,12 @@ export class OperationService {
     }
 
     getNewFormula: () => Formula = () => {
-        const a = newRandomNumber(this.settingsService.MAX_OPERATOR);
-        const b = newRandomNumber(this.settingsService.MAX_OPERATOR);
+        const a = newRandomNumber(this.settingsService.gameSettings.maxNumber);
+        const b = newRandomNumber(this.settingsService.gameSettings.maxNumber);
         const operation = newOperation();
         return {a, b, operation, result: operation.operation(a, b)};
     };
+
+    checkAnswer = (formula: Formula, answer: number) => answer === formula.result;
 
 }

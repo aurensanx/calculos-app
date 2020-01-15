@@ -17,7 +17,6 @@ const ADDITIONAL_TIME = 6;
 })
 export class BarComponent implements OnInit {
 
-    // animationActive: boolean;
     formula: Formula;
 
     constructor(private store: Store<{ question: Question }>, private router: Router) {

@@ -1,12 +1,11 @@
 import {Component} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {
-    PressBackspaceAction,
-    TapBackspaceAction,
-    TapNumberAction,
-    TapPlusMinusAction
-} from '../../../../store/keyboard-actions';
+import {select, Store} from '@ngrx/store';
+import {NewAnswerAction, NewFormulaAction} from '../../../../store/keyboard-actions';
 import {Vibration} from '@ionic-native/vibration/ngx';
+import {OperationService} from '../operation/operation.service';
+import {Question} from '../../../../store/state';
+import {Formula} from '../operation/operation';
+import {KeyboardService} from './keyboard.service';
 
 
 @Component({
@@ -16,24 +15,45 @@ import {Vibration} from '@ionic-native/vibration/ngx';
 })
 export class KeyboardComponent {
 
-    constructor(private store: Store<{ result: number }>, private vibration: Vibration) {
+    answer: number;
+    formula: Formula;
+
+    constructor(private store: Store<{ question: Question }>, private operationService: OperationService,
+                private keyboardService: KeyboardService, private vibration: Vibration) {
+        store.pipe(select('question')).subscribe(next => {
+            this.formula = next.formula;
+            this.answer = next.answer;
+        });
     }
 
     onNumberClick = (a: number) => {
+        const answer = this.keyboardService.addNumber(this.answer, a);
+        const isCorrect = this.operationService.checkAnswer(this.formula, answer);
+        if (isCorrect) {
+            this.store.dispatch(new NewFormulaAction(this.operationService.getNewFormula()));
+        } else {
+            this.store.dispatch(new NewAnswerAction(answer));
+        }
         // this.vibration.vibrate(40);
-        this.store.dispatch(new TapNumberAction(a));
     };
 
     onDelete = () => {
-        this.store.dispatch(new TapBackspaceAction());
+        const answer = this.keyboardService.deleteNumber(this.answer);
+        this.store.dispatch(new NewAnswerAction(answer));
     };
 
     onPlusMinus = () => {
-        this.store.dispatch(new TapPlusMinusAction());
+        const answer = this.keyboardService.changeSign(this.answer);
+        const isCorrect = this.operationService.checkAnswer(this.formula, answer);
+        if (isCorrect) {
+            this.store.dispatch(new NewFormulaAction(this.operationService.getNewFormula()));
+        } else {
+            this.store.dispatch(new NewAnswerAction(answer));
+        }
     };
 
     onPressBackspace() {
-        this.store.dispatch(new PressBackspaceAction());
+        this.store.dispatch(new NewAnswerAction(undefined));
     }
 
 }
