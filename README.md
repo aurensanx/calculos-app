@@ -6,6 +6,6 @@
 
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore calculos-app.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk calculos
 
-- rm calculo-mental.apk
+- rm calculo-mental.apk && zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk calculo-mental.apk
 
-- zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk calculo-mental.apk
+
