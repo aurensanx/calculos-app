@@ -5,7 +5,7 @@ import {formulaReducer} from './formula-reducer';
 
 
 interface AppState {
-    answer: number;
+    answer: string;
     formula: Formula;
 }
 

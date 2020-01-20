@@ -15,14 +15,14 @@ import {Subscription} from 'rxjs';
 })
 export class KeyboardComponent implements OnDestroy {
 
-    answer: number;
+    answer: string;
     formula: Formula;
     subscriptions: Subscription[] = [];
 
-    constructor(private answerStore: Store<{ answer: number }>, private formulaStore: Store<{ formula: Formula }>,
+    constructor(private answerStore: Store<{ answer: string }>, private formulaStore: Store<{ formula: Formula }>,
                 private operationService: OperationService, private keyboardService: KeyboardService, private vibration: Vibration) {
 
-        this.subscriptions.push(answerStore.pipe(select('answer')).subscribe((next: number) => {
+        this.subscriptions.push(answerStore.pipe(select('answer')).subscribe((next: string) => {
             this.answer = next;
         }));
         this.subscriptions.push(formulaStore.pipe(select('formula')).subscribe((next: Formula) => {
@@ -37,9 +37,9 @@ export class KeyboardComponent implements OnDestroy {
         });
     }
 
-    onNumberClick = (a: number) => {
+    onNumberClick = (a: string) => {
         const answer = this.keyboardService.addNumber(this.answer, a);
-        const isCorrect = this.operationService.checkAnswer(this.formula, answer);
+        const isCorrect = this.operationService.checkAnswer(this.formula, +answer);
         if (isCorrect) {
             this.formulaStore.dispatch(new NewFormulaAction(this.operationService.getNewFormula()));
             this.formulaStore.dispatch(new NewAnswerAction(undefined));
@@ -50,17 +50,8 @@ export class KeyboardComponent implements OnDestroy {
     };
 
     onDelete = () => {
-        const answer = this.keyboardService.deleteNumber(this.answer);
-        this.answerStore.dispatch(new NewAnswerAction(answer));
-    };
-
-    onPlusMinus = () => {
-        const answer = this.keyboardService.changeSign(this.answer);
-        const isCorrect = this.operationService.checkAnswer(this.formula, answer);
-        if (isCorrect) {
-            this.formulaStore.dispatch(new NewFormulaAction(this.operationService.getNewFormula()));
-            this.formulaStore.dispatch(new NewAnswerAction(undefined));
-        } else {
+        if (this.answer) {
+            const answer = this.keyboardService.deleteNumber(this.answer);
             this.answerStore.dispatch(new NewAnswerAction(answer));
         }
     };

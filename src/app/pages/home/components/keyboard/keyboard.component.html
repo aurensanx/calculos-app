@@ -1,18 +1,19 @@
 <div class="wrapper">
-  <div class="box" (click)="onNumberClick(7)" (press)="onNumberClick(7)">7</div>
-  <div class="box" (click)="onNumberClick(8)" (press)="onNumberClick(8)">8</div>
-  <div class="box" (click)="onNumberClick(9)" (press)="onNumberClick(9)">9</div>
-  <div class="box" (click)="onNumberClick(4)" (press)="onNumberClick(4)">4</div>
-  <div class="box" (click)="onNumberClick(5)" (press)="onNumberClick(5)">5</div>
-  <div class="box" (click)="onNumberClick(6)" (press)="onNumberClick(6)">6</div>
+  <div class="box" (click)="onNumberClick('7')" (press)="onNumberClick('7')">7</div>
+  <div class="box" (click)="onNumberClick('8')" (press)="onNumberClick('8')">8</div>
+  <div class="box" (click)="onNumberClick('9')" (press)="onNumberClick('9')">9</div>
+  <div class="box" (click)="onNumberClick('4')" (press)="onNumberClick('4')">4</div>
+  <div class="box" (click)="onNumberClick('5')" (press)="onNumberClick('5')">5</div>
+  <div class="box" (click)="onNumberClick('6')" (press)="onNumberClick('6')">6</div>
 <!--  <div class="box action">x</div>-->
-  <div class="box" (click)="onNumberClick(1)" (press)="onNumberClick(1)">1</div>
-  <div class="box" (click)="onNumberClick(2)" (press)="onNumberClick(2)">2</div>
-  <div class="box" (click)="onNumberClick(3)" (press)="onNumberClick(3)">3</div>
+  <div class="box" (click)="onNumberClick('1')" (press)="onNumberClick('1')">1</div>
+  <div class="box" (click)="onNumberClick('2')" (press)="onNumberClick('2')">2</div>
+  <div class="box" (click)="onNumberClick('3')" (press)="onNumberClick('3')">3</div>
 <!--  <div class="box action">o</div>-->
-  <div class="box" (click)="onNumberClick(0)" (press)="onNumberClick(0)">0</div>
+  <div class="box" (click)="onNumberClick('0')" (press)="onNumberClick('0')">0</div>
 <!--  <div class="box action">.</div>-->
-  <div class="box action" (click)="onPlusMinus()" (press)="onPlusMinus()">&plusmn;</div>
+<!--  <div class="box action" (click)="onPlusMinus()" (press)="onPlusMinus()">&plusmn;</div>-->
+  <div class="box action" (click)="onNumberClick('-')" (press)="onNumberClick('-')"><ion-icon name="remove"></ion-icon></div>
   <div class="box action" (click)="onDelete()" (press)="onPressBackspace()"><ion-icon name="backspace"></ion-icon></div>
 <!--  <div class="box action" (click)="onCheckResult()">Ok</div>-->
 </div>
